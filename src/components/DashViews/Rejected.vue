@@ -14,9 +14,11 @@
       >
 
         <material-card 
+        title="Rejected Projects"
+        color="red"
         >
           <v-btn
-            color="red"
+            color="black"
             dark
             class="mb-2" >Edit</v-btn>
           <v-data-table
@@ -96,7 +98,7 @@ export default {
         problem_statment: 'what is wron with the government',
         abstract: 'think sbout it',
        file: 'coming....',
-       status: 'Approved'
+       status: 'Rejected'
       },
       {
         reg_no: '16/U/32435/EVE',
@@ -104,7 +106,7 @@ export default {
         problem_statment: 'PROBLEMS',
         abstract: 'too many problems',
        file: '.........',
-       status: 'Approved'
+       status: 'Rejected'
       }
     ]
   })

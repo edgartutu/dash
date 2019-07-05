@@ -13,8 +13,8 @@
       >
         <material-card
           color="green"
-          title="Simple Table"
-          text="Here is a subtitle for this table"
+          title="Approved Projects"
+        
         >
           <v-data-table
             :headers="headers"
@@ -34,9 +34,12 @@
               slot="items"
               slot-scope="{ item }"
             >
-              <td>{{ item.name }}</td>
-              <td>{{ item.country }}</td>
-              <td>{{ item.city }}</td>
+              <td>{{ item.reg_no }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.problem_statment }}</td>
+               <td>{{ item.abstract }}</td>
+                <td>{{ item.file }}</td>
+                 <td>{{ item.status }}</td>
               <td class="text-xs-right">{{ item.salary }}</td>
             </template>
           </v-data-table>
@@ -88,12 +91,12 @@ export default {
     headers: [
       {
         sortable: false,
-        text: 'Name',
+        text: 'Reg_no',
         value: 'name'
       },
       {
         sortable: false,
-        text: 'Country',
+        text: 'Title',
         value: 'country'
       },
       {
@@ -103,7 +106,25 @@ export default {
       },
       {
         sortable: false,
-        text: 'Salary',
+        text: 'Problem_statment',
+        value: 'salary',
+        align: 'right'
+      },
+      {
+        sortable: false,
+        text: 'Abstract',
+        value: 'salary',
+        align: 'right'
+      },
+      {
+        sortable: false,
+        text: 'File',
+        value: 'salary',
+        align: 'right'
+      },
+      {
+        sortable: false,
+        text: 'status ',
         value: 'salary',
         align: 'right'
       }

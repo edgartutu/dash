@@ -10,52 +10,44 @@
       <v-flex xs12>
         <material-card
           color="general"
-          title="Material Dashboard Heading"
-          text="Created using Roboto Font Family"
+          title="Projects"  
         >
-          <v-card-text>
-            <h2 class="font-weight-light mb-4">Typography</h2>
-
-            <v-container
-              class="pa-0"
-              grid-list-xl
-              fluid
+        <v-card-text>
+              <v-flex
+          md12
+        >
+          <material-card
+            color="green"
+            title="Table"
+            
+          >
+            <v-data-table
+              :headers="headers"
+              :items="items.slice(0, 10)"
+              hide-actions
             >
-              <v-layout
-                v-for="(t, i) in typography"
-                :key="i"
-                align-end
-                wrap
+              <template
+                slot="headerCell"
+                slot-scope="{ header }"
               >
-                <v-flex
-                  xs1
-                  md3>
-                  <span
-                    class="tim-note"
-                    v-text="t[0]"
-                  />
-                </v-flex>
-                <v-flex xs8>
-                  <component
-                    :is="t[2]"
-                    :class="i"
-                  >
-                    <template v-if="i !== 'quote'">
-                      {{ t[1] }}
-                    </template>
-
-                    <p v-if="i === 'quote'">{{ t[1] }}</p>
-                    <small v-if="i === 'quote'">Kanye West, Musician</small>
-
-                    <template v-if="i === 'small'">
-                      <br>
-                      <small>Use 'small' tag for the headers</small>
-                    </template>
-                  </component>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-card-text>
+                <span
+                  class="subheading font-weight-light text-success text--darken-3"
+                  v-text="header.text"
+                />
+              </template>
+              <template
+                slot="items"
+                slot-scope="{ item }"
+              >
+                <td>{{ item.title }}</td>
+                <td>{{ item.comment }}</td>
+      
+              </template>
+            </v-data-table>
+          </material-card>
+        </v-flex>
+      
+      </v-card-text>
         </material-card>
       </v-flex>
     </v-layout>
@@ -63,30 +55,34 @@
 </template>
 
 <script>
-const leader = 'I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.'
-const leaderShort = leader.slice(0, 105) + '...'
-const material = 'The Life of Material Dashboard'
-const small = 'Header with small subtitle'
 
 export default {
   data: () => ({
-    typography: {
-      'heading-1': ['Header 1', material, 'h1'],
-      'heading-2': ['Header 2', material, 'h2'],
-      'heading-3': ['Header 3', material, 'h3'],
-      'heading-4': ['Header 4', material, 'h4'],
-      'heading-5': ['Header 5', material, 'h5'],
-      'heading-6 text-uppercase': ['Header 6', material, 'h6'],
-      '': ['Paragraph', leader, 'p'],
-      'quote': ['Quote', leader, 'blockquote'],
-      'text--disabled': ['Muted Text', leaderShort, 'p'],
-      'text-primary': ['Primary Text', leaderShort, 'p'],
-      'text-info': ['Info Text', leaderShort, 'p'],
-      'text-success': ['Success Text', leaderShort, 'p'],
-      'text-warning': ['Warning Text', leaderShort, 'p'],
-      'text-danger': ['Danger Text', leaderShort, 'p'],
-      'small': ['Small Tag', small, 'h2']
-    }
+    headers: [
+      {
+        sortable: false,
+        text: 'Title',
+        value: 'name'
+      },
+      {
+        sortable: false,
+        text: 'Comment',
+        value: 'country'
+      }
+     
+    ],
+    items: [
+      {
+        title: 'networks',
+        comment:'demotted'
+        
+      },
+      {
+        title:'machine learning',
+        comment: 'conspiracy',
+        
+      }, 
+    ]
   })
 }
 </script>

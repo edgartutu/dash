@@ -13,8 +13,8 @@
           <v-card
             class="elevation-12">
             <v-toolbar
-              color="general">
-              <v-toolbar-title>Admin Panel</v-toolbar-title>
+              color="green">
+              <v-toolbar-title>Admin </v-toolbar-title>
               <v-spacer/>
             </v-toolbar>
             <v-card-text>
@@ -50,7 +50,7 @@
               <v-btn
                 align-center
                 justify-center
-                color="general"
+                color="green"
                 @click="login">Login
               </v-btn>
             </v-card-actions>

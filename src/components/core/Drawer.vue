@@ -29,7 +29,7 @@
             />
           </v-list-tile-avatar>
           <v-list-tile-title class="title">
-            Vuetify Admin Dash
+            Admin 
           </v-list-tile-title>
         </v-list-tile>
         <v-divider/>
@@ -39,7 +39,7 @@
           <v-text-field
             class="purple-input search-input"
             label="Search..."
-            color="purple"
+            color="grey"
           />
         </v-list-tile>
         <v-list-tile
@@ -81,38 +81,38 @@ export default {
       {
         to: '/dashboard/user-profile',
         icon: 'mdi-account',
-        text: 'User Profile'
+        text: 'Pending Proposals'
       },
       {
         to: '/dashboard/table-list',
         icon: 'mdi-clipboard-outline',
-        text: 'Table List'
+        text: 'Approved Proposals'
       },
       {
         to: '/dashboard/user-tables',
         icon: 'mdi-table-edit',
-        text: 'Users Table'
+        text: 'Upload projects'
       },
       {
         to: '/dashboard/typography',
         icon: 'mdi-format-font',
-        text: 'Typography'
+        text: 'View projects'
       },
       {
-        to: '/dashboard/icons',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
-      },
-      {
-        to: '/dashboard/maps',
-        icon: 'mdi-map-marker',
-        text: 'Maps'
+        to: '/dashboard/rejected',
+        icon: 'folder',
+        text: 'Rejected Proposal'
       },
       {
         to: '/dashboard/notifications',
         icon: 'mdi-bell',
         text: 'Notifications'
       },
+       {
+        to: '/dashboard/messages',
+        icon: 'message',
+        text: 'Messages'
+      }
     ],
     responsive: false
   }),

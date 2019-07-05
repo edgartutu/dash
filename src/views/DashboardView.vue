@@ -2,7 +2,7 @@
   <v-content>
     <v-app
       id="dashboard-view"
-      dark>
+      >
       <core-filter />
 
       <core-toolbar />
@@ -24,7 +24,7 @@ export default {
   name: 'DashboardView',
   metaInfo () {
     return {
-      title: 'Vuetify Admin Dashboard by ClintOxx'
+      title: 'FYP'
     }
   }
 }

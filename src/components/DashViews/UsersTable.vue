@@ -14,8 +14,8 @@
         <div>
           <material-card
             color="general"
-            title="Usernames Table"
-            text="Such a classic table"
+            title="Upload projects"
+          
           >
           <v-spacer></v-spacer>
           <v-text-field
@@ -33,50 +33,28 @@
                   color="general"
                   dark
                   class="mb-2"
-                  v-on="on">New Item</v-btn>
+                  v-on="on">New project</v-btn>
               </template>
 
               <v-card>
                 <v-card-text>
                   <v-container grid-list-md >
                     <v-layout wrap>
-                      <v-flex
-                        xs12
-                        sm6
-                        md4>
+                    
+                        
                         <v-text-field
                           v-model="editedItem.username"
-                          label="Username" />
-                      </v-flex>
-                      <v-flex
-                        xs12
-                        sm6
-                        md4>
-                        <v-text-field
-                          v-model="editedItem.password"
-                          label="Password" />
-                      </v-flex>
-                      <v-flex
-                        xs12
-                        sm6
-                        md4>
+                          label="Title" />
+   
+                    </v-layout>
+                    <p></p>
+                     <v-layout wrap>
+                    
+                       
                         <v-text-field
                           v-model="editedItem.email"
-                          label="Email"/>
-                      </v-flex>
-                      <v-flex
-                        xs12
-                        sm6
-                        md4>
-                        <v-checkbox v-model="checkboxAdmin" :label="`IsAdmin`"></v-checkbox>
+                          label="Coment" />
 
-                      </v-flex>
-                      <v-flex
-                        xs12
-                        sm6
-                        md4>
-                        <v-checkbox v-model="checkboxActive" :label="`IsActive`"></v-checkbox>
-                      </v-flex>
                     </v-layout>
                   </v-container>
                 </v-card-text>
@@ -84,7 +62,7 @@
                 <v-card-actions>
                   <v-spacer/>
                   <v-btn
-                    color="blue darken-1"
+                    color="green darken-1"
                     flat
                     @click="close">Cancel</v-btn>
                   <v-btn
@@ -113,7 +91,7 @@
                 />
               </template>
               <template v-slot:items="props">
-                <td>{{ props.item.id }}</td>
+                <td>{{ props.item.title }}</td>
                 <td class="justify-center ">
                   <v-icon
                     medium
@@ -139,10 +117,8 @@
                       <v-text-field
                         v-model="props.item.username"
                         :rules="[max25chars]"
-                        label="Edit"
-                        single-line
-                        counter
-                        autofocus
+                        label="Edit"   
+                         single-line                            
                       />
                     </template>
                   </v-edit-dialog>
@@ -154,7 +130,7 @@
                     large
                     lazy
                     persistent
-                    @save="save"
+                    @save="saveInline"
                     @cancel="cancelInline"
                     @open="openInline"
                     @close="closeInline"
@@ -163,7 +139,7 @@
                     <template v-slot:input>
                       <v-text-field
                         v-model="props.item.email"
-                        :rules="[max25chars]"
+                       
                         label="Edit"
                         single-line
                         counter
@@ -172,10 +148,8 @@
                     </template>
                   </v-edit-dialog>
                 </td>               
-                <td class="">{{ props.item.isAdmin }}</td>
-                <td class="">{{ props.item.isActive }}</td>
-                <td class="">{{ props.item.lastSeen }}</td>
-                <td v-show = false>{{ props.item.password }}</td>  
+                
+                
               </template>
             </v-data-table>
             <v-snackbar
@@ -202,42 +176,31 @@ export default {
     snack: false,
     snackColor: '',
     snackText: '',
-    max25chars: v => v.length <= 25 || 'Input too long!',
+    
     pagination: {},
     UserList: [],
-    checkboxAdmin: true,
-    checkboxActive: true,
-    rowsAmount: [15,20,25,{"text":"$vuetify.dataIterator.rowsPerPageAll","value":-1}],
+  
     dialog: false,
     search: '',
     headers: [
-      { text: 'Id', align: 'left', value: 'id'},
-      { text: '-----Actions-----', value: 'actions', sortable: false },
-      { text: 'username', value: 'username' },
-      { text: 'email', value: 'email' },
-      { text: 'isAdmin', value: 'isAdmin' },
-      { text: 'isActive', value: 'isActive' },
-      { text: 'lastSeen', value: 'lastSeen' },
-      { text: 'password', value: 'password' },
-
-
+     
+     
+      { text: 'ID', value: 'username' },
+      { text: 'Title', value: 'email' },
+      
     ],
-    editedIndex: -1,
+   
     editedItem: {
       username: '',
-      password: '',
       email: '',
-      isAdmin : true,
-      isActive : true,
-    },
-    defaultItem: {
-
+      
     }
+    
   }),
 
   computed: {
     formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return this.editedIndex === 0 ? 'New Item' : 'Edit Item'
     }
   },
 
@@ -265,13 +228,7 @@ export default {
 
 
     // object.assign fills in the empty object with the properties of item
-    editItem (item, dbox=true ) {
-      this.editedIndex = this.UserList.indexOf(item)
-      item.isAdmin = this.checkboxAdmin
-      item.isActive = this.checkboxActive
-      this.editedItem = Object.assign({}, item)
-      this.dialog = dbox
-    },
+    
 
     callTableAction (item, endpoint, method) {
       let tableItem = this.editedItem
@@ -285,7 +242,7 @@ export default {
     
     deleteItem (item) {
       const index = this.UserList.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.UserList.splice(index, 1)
+      confirm('Are you sure you want to delete this item?') && this.UserList.splice(index, 0)
       this.editedItem = Object.assign({}, item)
       let endpoint = `users/delete/${this.editedItem.username}`
       let method = 'delete'
@@ -296,12 +253,12 @@ export default {
       this.dialog = false
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
+        this.editedIndex = 0
       }, 300)
     },
 
     save () {
-      if (this.editedIndex > -1) {
+      if (this.editedIndex > 0) {
         Object.assign(this.UserList[this.editedIndex], this.editedItem)
         let tableItem = this.editedItem
         let endpoint = `users/update/${this.editedItem.username}`
@@ -326,31 +283,8 @@ export default {
 
       }
       this.close()
-    },
-    //toasts/snackbar messages for actions
-    saveInline () {
-      this.snack = true
-      this.snackColor = 'success'
-      this.snackText = 'Data saved'
-    },
-    cancelInline () {
-      this.snack = true
-      this.snackColor = 'error'
-      this.snackText = 'Canceled'
-    },
-    reset () {
-      this.snack = true
-      this.snackColor = 'success'
-      this.snackText = 'Data reset to default'
-    },
-    openInline () {
-      this.snack = true
-      this.snackColor = 'info'
-      this.snackText = 'Dialog opened'
-    },
-    closeInline () {
-      console.log('Dialog closed')
     }
+   
   }
 }
 </script>

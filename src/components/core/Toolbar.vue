@@ -5,7 +5,7 @@
 				<v-btn v-if="responsive" class="default v-btn--simple" icon @click.stop="onClickBtn">
 					<v-icon>mdi-view-list</v-icon>
 				</v-btn>
-				{{ title }}
+				
 			</v-toolbar-title>
 		</div>
 
@@ -64,7 +64,7 @@
 				"Another Notification",
 				"Another One - Dj Khalid voice"
 			],
-			title: "I got a digital dash -Future Hendrixx",
+			title: "final year roject platform",
 			responsive: false,
 			responsiveInput: false
 		}),
