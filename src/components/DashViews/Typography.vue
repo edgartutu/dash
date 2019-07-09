@@ -40,7 +40,7 @@
                 slot-scope="{ item }"
               >
                 <td>{{ item.title }}</td>
-                <td>{{ item.comment }}</td>
+                <td>{{ item.comments}}</td>
       
               </template>
             </v-data-table>
@@ -55,36 +55,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+    export default {
+        data: () => ({
+            headers: [
+                {
+                    sortable: false,
+                    text: 'Title',
+                    value: 'name'
+                },
+                {
+                    sortable: false,
+                    text: 'Comment',
+                    value: 'country'
+                }
 
-export default {
-  data: () => ({
-    headers: [
-      {
-        sortable: false,
-        text: 'Title',
-        value: 'name'
-      },
-      {
-        sortable: false,
-        text: 'Comment',
-        value: 'country'
-      }
-     
-    ],
-    items: [
-      {
-        title: 'networks',
-        comment:'demotted'
-        
-      },
-      {
-        title:'machine learning',
-        comment: 'conspiracy',
-        
-      }, 
-    ]
-  })
-}
+            ],
+            items: []
+
+        }),
+        mounted() {
+            axios.get("http://127.0.0.1:5000/adminviewprojects").then(response => {
+                this.items = response.data
+            })
+        }
+    }
+
 </script>
 
 <style lang="scss">

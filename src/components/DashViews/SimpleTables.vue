@@ -39,9 +39,9 @@
             >
              <td>{{ item.reg_no }}</td>
               <td>{{ item.title }}</td>
-              <td>{{ item.problem_statment }}</td>
+              <td>{{ item.problem_statement }}</td>
                <td>{{ item.abstract }}</td>
-                <td>{{ item.file }}</td>
+                <td>{{ item.proposal_uploadfile }}</td>
                  <td>{{ item.status }}</td>
             </template>
           </v-data-table>
@@ -54,12 +54,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     headers: [
       {
         sortable: true,
-        text: 'Reg_no',
+        text: 'Reg No',
         value: 'reg_no'
       },
       {
@@ -69,7 +70,7 @@ export default {
       },
       {
         sortable: false,
-        text: 'Problem_statment',
+        text: 'Problem Statment',
         value: 'problem_statment'
       },
       {
@@ -88,25 +89,14 @@ export default {
         value: 'status',
       },
 
-    ],
-    items: [
-      {
-        reg_no: '14/U/2425/PSA ',
-        title: 'Energy Saving System for Corporate Computers and Lighting System By Using PIR Sensor ',
-        problem_statment: 'what is wron with the government',
-        abstract: 'think sbout it',
-       file: 'coming....',
-       status: 'Approved'
-      },
-      {
-        reg_no: '16/U/32435/EVE',
-        title: 'Automatic Intelligent Streetlight Controlling System Based on High Power LED',
-        problem_statment: 'PROBLEMS',
-        abstract: 'too many problems',
-       file: '.........',
-       status: 'Approved'
-      }
-    ]
-  })
+        ],
+        items: []
+
+        }),
+        mounted() {
+            axios.get("http://127.0.0.1:5000/approved").then(response => {
+                this.items = response.data
+            })
+        }
 }
 </script>

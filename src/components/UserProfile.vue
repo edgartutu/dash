@@ -11,7 +11,7 @@
         
           <v-form >  
             <v-expansion-panel popout>
-              <v-expansion-panel-content v-for="proposal in proposals" :key="proposal.reg_no">
+              <v-expansion-panel-content v-for="proposal in proposals":key="proposal.reg_no">
                 <template v-slot:header>
                <div>{{proposal.title}}</div>
             </template>
@@ -32,8 +32,8 @@
                     <v-text-field label="Comment" placeholder="Comment" v-model="comment"></v-text-field>
                     <v-btn class="green" @click="approve">Approve</v-btn>
                     <v-btn class="red" @click="rejected">Reject</v-btn>
+
                 </v-card-text>
-          
               </v-expansion-panel-content>
             </v-expansion-panel>
       
@@ -53,15 +53,21 @@
 
 <script>
 import axios from 'axios'
-    export default {
-        data() {
-            return {
-                proposals: {},
-                supervisor: "",
-                email: "",
-                comment: "",
+export default {
+  components: {
+ 
+  },
+    data () {
+        return {
+            proposals: {},
+            supervisor: "",
+            email: "",
+            comment: "",
+            status: "Approved",
+            status2: "Rejected"
 
-            }
+        }
+    
         },
         mounted() {
             axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
@@ -71,19 +77,17 @@ import axios from 'axios'
         methods: {
             approve() {
                 axios.post("http://127.0.0.1:5000/approve", {
-                    "reg_no": 1236, "supervisor": this.supervisor, "email": this.email,
-                    "comment": this.comment, "status": "Approved"
+                    "reg_no": 1234, "supervisor": this.supervisor, "email": this.email,
+                    "comment": this.comment, "status": this.status
                 })
             },
             rejected() {
+                console.log(this.proposals.reg_no)
                 axios.post("http://127.0.0.1:5000/approve", {
                     "reg_no": 1234,
-                    "comment": this.comment, "status": "Rejected"
+                    "comment": this.comment, "status": this.status2
                 })
             }
         }
-     
-    
-   
 }
 </script>

@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     headers: [
@@ -91,24 +92,12 @@ export default {
       },
 
     ],
-    items: [
-      {
-        reg_no: '14/U/2425/PSA ',
-        title: 'Energy Saving System for Corporate Computers and Lighting System By Using PIR Sensor ',
-        problem_statment: 'what is wron with the government',
-        abstract: 'think sbout it',
-       file: 'coming....',
-       status: 'Rejected'
-      },
-      {
-        reg_no: '16/U/32435/EVE',
-        title: 'Automatic Intelligent Streetlight Controlling System Based on High Power LED',
-        problem_statment: 'PROBLEMS',
-        abstract: 'too many problems',
-       file: '.........',
-       status: 'Rejected'
-      }
-    ]
-  })
+    items: []
+        }),
+        mounted() {
+            axios.get("http://127.0.0.1:5000/viewrejected").then(response => {
+                this.items = response.data
+            })
+        }
 }
 </script>

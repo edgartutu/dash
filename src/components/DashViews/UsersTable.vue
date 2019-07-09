@@ -171,6 +171,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     snack: false,
@@ -183,7 +184,6 @@ export default {
     dialog: false,
     search: '',
     headers: [
-     
      
       { text: 'ID', value: 'username' },
       { text: 'Title', value: 'email' },
@@ -270,7 +270,10 @@ export default {
           this.cancelInline
         }) 
       } else {
-        let tableItem = this.editedItem
+          axios.post("http://127.0.0.1:5000/postproject", {
+              "title": this.editedItem.username, "comments": this.editedItem.email
+          })
+        /*let tableItem = this.editedItem
         this.UserList.push(this.editedItem)
         let endpoint = `users/new-user`
         let method = 'post'
@@ -279,7 +282,7 @@ export default {
         .catch(error =>{ 
           console.log(error)
           this.cancelInline
-          })
+          })*/
 
       }
       this.close()
