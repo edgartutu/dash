@@ -34,6 +34,7 @@
         </v-list-tile>
         <v-divider/>
         <v-list-tile
+          
           v-if="responsive"
         >
           <v-text-field
@@ -46,15 +47,18 @@
           v-for="(link, i) in links"
           :key="i"
           :to="link.to"
-          :active-class="color"
+          flat small
           avatar
           class="v-list-item"
+
         >
           <v-list-tile-action>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-title
+          
             v-text="link.text"
+            
           />
         </v-list-tile>
       </v-layout>
@@ -74,7 +78,7 @@ export default {
     logo: require('@/assets/img/redditicon.png'),
     links: [
       {
-        to: '/',
+        to: '/dashboard',
         icon: 'mdi-view-dashboard',
         text: 'Dashboard'
       },
@@ -103,11 +107,17 @@ export default {
         icon: 'folder',
         text: 'Rejected Proposal'
       },
-      {
+       {
+        to: '/dashboard/registry',
+        icon: 'folder',
+        text: 'Registry'
+      },
+     /* {
         to: '/dashboard/notifications',
         icon: 'mdi-bell',
         text: 'Notifications'
-      },
+      },*/
+
        {
         to: '/dashboard/messages',
         icon: 'message',
@@ -154,6 +164,8 @@ export default {
   #app-drawer {
     .v-list__tile {
       border-radius: 4px;
+      height: 40px;
+      margin-top: 2px;
 
       &--buy {
         margin-top: auto;
@@ -163,7 +175,7 @@ export default {
 
     .v-image__image--contain {
       top: 9px;
-      height: 60%;
+      height: 40%;
     }
 
     .search-input {

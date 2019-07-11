@@ -2,7 +2,7 @@
 <template>
   <v-app
     id="login-home"
-    class="grey">
+    class="purple lighten-2">
 
     <transition mode="out-in">
       <router-view/>

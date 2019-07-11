@@ -11,7 +11,7 @@
         
           <v-form >  
             <v-expansion-panel popout>
-              <v-expansion-panel-content v-for="proposal in proposals":key="proposal.reg_no">
+              <v-expansion-panel-content v-for="proposal in proposals" :key="proposal.reg_no">
                 <template v-slot:header>
                <div>{{proposal.title}}</div>
             </template>

@@ -22,18 +22,20 @@ export default [
       name: '',
       requiresAuth: false
     },
+  
     
     component: () =>
       import(/* webpackChunkName: "routes" */ `@/views/LoginHome.vue`),
     // redirect if already signed in
     beforeEnter: (to, from, next) => {
       if (store.getters.authorized) {
-        next('/dashboard')
-  
+        next()
+        
       }
+     
       
       else {
-        next('/dashboard')
+        next()
       }
     },
     children: [
@@ -106,12 +108,12 @@ export default [
         component: () => import(`@/components/DashViews/Icons.vue`)
       },
       {
-        path: 'maps',
+        path: 'registry',
         meta: {
-          name: 'Maps',
+          name: 'Registry',
           requiresAuth: false
         },
-        component: () => import(`@/components/DashViews/Maps.vue`)
+        component: () => import(`@/components/DashViews/Registry.vue`)
       },
       {
         path: 'notifications',

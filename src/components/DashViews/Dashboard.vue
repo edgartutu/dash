@@ -1,8 +1,10 @@
 <template>
+
   <v-container
     fill-height
     fluid
     grid-list-xl>
+      
     <v-layout wrap>
      <v-flex
         md12
@@ -28,6 +30,20 @@
 
         </material-card>
       </v-flex>
+       <v-flex
+        md12
+        lg12
+      >
+        <material-card
+          title="Approved Projects"
+          color="green">
+        <v-flex>
+            <project/>
+        </v-flex>
+        
+
+        </material-card>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -36,12 +52,14 @@
 import user from './UserProfile.vue'
 import table from './UsersTable.vue'
 import simple from './SimpleTables.vue'
+import project from './ProjectTable.vue'
 export default {
   name: 'Dashboard',
   components:{
     user,
     table,
-    simple
+    simple,
+    project
 
   },
   data () {
