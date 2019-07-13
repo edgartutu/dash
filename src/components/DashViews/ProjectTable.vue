@@ -49,7 +49,7 @@
                     <div>{{props.item.title}}</div>
                     <h4 class="font-weight-bold">Problem statment</h4>
                     <div>{{props.item.problem_statment}}</div>
-                    <h4 class="font-weight-bold">Abstract</h4>
+                    <h4 class="font-weight-bold">Methodology</h4>
                     <div>{{props.item.abstract}}</div>
                     <h4 class="font-weight-bold">File</h4>
                     <div>{{props.item.file}}</div>

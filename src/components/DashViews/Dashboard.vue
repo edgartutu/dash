@@ -11,7 +11,7 @@
       >
         <material-card
           title="All Projects"
-          color="green">
+          color="green darken-4">
         <v-flex>
             <project/>
         </v-flex>
@@ -29,7 +29,7 @@
         lg6
       >
         <material-card  class="rounded-card"
-          color="orange"
+          color="deep-orange darken-1"
           title="Pending Projects"
           popout  
         >
@@ -42,7 +42,7 @@
       >
         <material-card
           title="Approved Projects"
-          color="green">
+          color="teal darken-1">
 
           <simple/>
 
