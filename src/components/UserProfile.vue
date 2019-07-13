@@ -7,7 +7,9 @@
       justify-center
       wrap
     >
-      <v-flex >
+      <v-flex
+       md12
+      >
         
           <v-form >  
             <v-expansion-panel popout>

@@ -1,5 +1,6 @@
 <template>
   <v-navigation-drawer
+  
     id="app-drawer"
     v-model="inputValue"
     app
@@ -17,6 +18,7 @@
         class="fill-height"
         tag="v-list"
         column
+        
       >
         <v-list-tile avatar>
           <v-list-tile-avatar
@@ -29,7 +31,7 @@
             />
           </v-list-tile-avatar>
           <v-list-tile-title class="title">
-            Admin 
+            Projects
           </v-list-tile-title>
         </v-list-tile>
         <v-divider/>
@@ -111,6 +113,11 @@ export default {
         to: '/dashboard/registry',
         icon: 'folder',
         text: 'Registry'
+      },
+      {
+        to: '/dashboard/progress',
+        icon: 'folder',
+        text: 'Students Progress'
       },
      /* {
         to: '/dashboard/notifications',

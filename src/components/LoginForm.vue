@@ -99,24 +99,17 @@ export default {
 
 
   // Sends action to Vuex that will log you in and redirect to the dash otherwise, error
-  methods: {
-    
+ methods: {
     login: function () {
-      axios.post("http://127.0.0.1:5000/login-admin",{'username':this.username,'password':this.password}).then(response => {
-                const token =response.data.token
-                this.$store.dispatch('login')
-                localStorage.setItem('token',token)
-                this.$router.push('/dashboard')
-                .catch(err => {
+      let username = this.username
+      let password = this.password
+      this.$store.dispatch('login', { username, password })
+        .then(() => this.$router.push('/dashboard'))
+        .catch(err => {
         console.log(err)
         this.snackbar= true
         }
         )
-                
-                
-            })
-     
-        
     }
   },
   metaInfo () {

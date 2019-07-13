@@ -9,7 +9,7 @@ export default [
     path: '*',
     meta: {
       name: '',
-      requiresAuth: false
+      requiresAuth: true
     },
     redirect: {
       path: '/dashboard'
@@ -29,7 +29,7 @@ export default [
     // redirect if already signed in
     beforeEnter: (to, from, next) => {
       if (store.getters.authorized) {
-        next()
+        next('/dashboard')
         
       }
      
@@ -40,7 +40,7 @@ export default [
     },
     children: [
       {
-        path: '',
+        path: '/',
         component: () => import(`@/components/LoginForm.vue`)
       }
     ]
@@ -50,7 +50,7 @@ export default [
     path: '/dashboard',
     meta: {
       name: 'Dashboard View',
-      requiresAuth: false
+      requiresAuth: true
     },
     component: () => import(`@/views/DashboardView.vue`),
     children: [
@@ -63,7 +63,7 @@ export default [
         path: 'user-profile',
         meta: {
           name: 'User Profile',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/UserProfile.vue`)
       },
@@ -71,7 +71,7 @@ export default [
         path: 'table-list',
         meta: {
           name: 'Table List',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/SimpleTables.vue`)
       },
@@ -79,7 +79,7 @@ export default [
         path: 'user-tables',
         meta: {
           name: 'User Table',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/UsersTable.vue`)
       },
@@ -87,7 +87,7 @@ export default [
         path: 'tablestest',
         meta: {
           name: 'Complex Tables test',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/TableList.vue`)
       },
@@ -95,7 +95,7 @@ export default [
         path: 'typography',
         meta: {
           name: 'Typography',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/Typography.vue`)
       },
@@ -103,7 +103,7 @@ export default [
         path: 'icons',
         meta: {
           name: 'Icons',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/Icons.vue`)
       },
@@ -111,15 +111,23 @@ export default [
         path: 'registry',
         meta: {
           name: 'Registry',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/Registry.vue`)
+      },
+      {
+        path: 'progress',
+        meta: {
+          name: 'Students Progress',
+          requiresAuth: true
+        },
+        component: () => import(`@/components/DashViews/StudentsProgress.vue`)
       },
       {
         path: 'notifications',
         meta: {
           name: 'Notifications',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/Notifications.vue`)
       },
@@ -127,7 +135,7 @@ export default [
         path: 'messages',
         meta: {
           name: 'Messages',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/Messages.vue`)
       },
@@ -135,7 +143,7 @@ export default [
         path: 'rejected',
         meta: {
           name: 'Rejected',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import(`@/components/DashViews/Rejected.vue`)
       }

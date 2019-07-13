@@ -6,9 +6,10 @@
     <v-layout
       justify-center
       wrap
+      
     >
       <v-flex >
-        
+        <materila-card >
           <v-form >  
             <v-expansion-panel popout>
               <v-expansion-panel-content v-for="proposal in proposals" :key="proposal.reg_no">
@@ -39,7 +40,7 @@
       
     
           </v-form>
-        
+        </materila-card>
       </v-flex>
       <v-flex
         xs12

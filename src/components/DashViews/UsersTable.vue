@@ -270,10 +270,8 @@ export default {
           this.cancelInline
         }) 
       } else {
-          axios.post("http://127.0.0.1:5000/postproject", {
-              "title": this.editedItem.username, "comments": this.editedItem.email
-          })
-        /*let tableItem = this.editedItem
+          
+        let tableItem = this.editedItem
         this.UserList.push(this.editedItem)
         let endpoint = `users/new-user`
         let method = 'post'
@@ -282,9 +280,12 @@ export default {
         .catch(error =>{ 
           console.log(error)
           this.cancelInline
-          })*/
+          })
 
       }
+      axios.post("http://127.0.0.1:5000/postproject", {
+              "title": this.editedItem.username, "comments": this.editedItem.email
+          })
       this.close()
     }
    

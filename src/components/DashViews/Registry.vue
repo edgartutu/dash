@@ -15,10 +15,9 @@
           color="green"
           title="Registered Students"
         
-        >
-          <v-data-table
+        >  <v-data-table
             :headers="headers"
-            :itemz="itemz"
+            :items="itemz.slice(0, 7)"
             hide-actions
           >
             <template
@@ -26,23 +25,24 @@
               slot-scope="{ header }"
             >
               <span
-                class="subheading font-weight-light text-success text--darken-3"
+                class="subheading font-weight-light text--darken-3"
                 v-text="header.text"
               />
             </template>
             <template
-              slot="itemz"
-              slot-scope="{ itemm }"
+              slot="items"
+              slot-scope="{ item }"
             >
-              <td>{{ itemm.reg_no }}</td>
-              <td>{{ itemm.student1 }}</td>
-              <td>{{ itemm.contact1 }}</td>
-               <td>{{ itemm.reg_no1 }}</td>
-                <td>{{ itemm.student2 }}</td>
-                 <td>{{ itemm.contact2 }}</td>
-          
+             <td>{{ item.reg_no }}</td>
+              <td>{{ item.student1 }}</td>
+              <td>{{ item.contact1 }}</td>
+               <td>{{ item.reg_no1 }}</td>
+                <td>{{ item.student2 }}</td>
+                 <td>{{ item.contact2 }}</td>
+              
             </template>
           </v-data-table>
+         
         </material-card>
       </v-flex>
       <v-flex

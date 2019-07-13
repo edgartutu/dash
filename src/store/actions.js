@@ -7,7 +7,7 @@ export default {
     return new Promise((resolve, reject) => {
       commit('auth_request')
       
-      axios.post('/auth', { username: userData.username, password: userData.password })
+      axios.post('/login-admin', { username: userData.username, password: userData.password })
         .then(response => {
           const token = response.data.access_token
           const user = response.data.username

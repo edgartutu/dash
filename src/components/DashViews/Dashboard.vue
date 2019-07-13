@@ -1,16 +1,34 @@
 <template>
-
   <v-container
     fill-height
     fluid
     grid-list-xl>
       
     <v-layout wrap>
-     <v-flex
+       <v-flex
         md12
         lg12
       >
-        <material-card 
+        <material-card
+          title="All Projects"
+          color="green">
+        <v-flex>
+            <project/>
+        </v-flex>
+        
+
+        </material-card>
+      </v-flex>
+      <v-flex 
+      >
+           <note/>
+      </v-flex>
+      <v-spacer></v-spacer>
+     <v-flex
+       
+        lg6
+      >
+        <material-card  class="rounded-card"
           color="orange"
           title="Pending Projects"
           popout  
@@ -19,8 +37,8 @@
         </material-card>
       </v-flex>
       <v-flex
-        md12
-        lg12
+        
+        lg6
       >
         <material-card
           title="Approved Projects"
@@ -30,20 +48,7 @@
 
         </material-card>
       </v-flex>
-       <v-flex
-        md12
-        lg12
-      >
-        <material-card
-          title="Approved Projects"
-          color="green">
-        <v-flex>
-            <project/>
-        </v-flex>
-        
-
-        </material-card>
-      </v-flex>
+      
     </v-layout>
   </v-container>
 </template>
@@ -53,13 +58,15 @@ import user from './UserProfile.vue'
 import table from './UsersTable.vue'
 import simple from './SimpleTables.vue'
 import project from './ProjectTable.vue'
+import note from './ProgressNote'
 export default {
   name: 'Dashboard',
   components:{
     user,
     table,
     simple,
-    project
+    project,
+    note
 
   },
   data () {
@@ -212,3 +219,9 @@ export default {
   }
 }
 </script>
+<style >
+.rounded-card{
+    border-radius:50px;
+}
+  
+</style>
