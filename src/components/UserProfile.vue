@@ -6,12 +6,11 @@
     <v-layout
       justify-center
       wrap
-    >
+    > 
       <v-flex
        md12
       >
-        
-          <v-form >  
+  
             <v-expansion-panel popout>
               <v-expansion-panel-content v-for="proposal in proposals" :key="proposal.reg_no">
                 <template v-slot:header>
@@ -40,9 +39,10 @@
             </v-expansion-panel>
       
     
-          </v-form>
+          
         
       </v-flex>
+      
       <v-flex
         xs12
         md4

@@ -18,13 +18,7 @@
           
           >
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Search"
-            single-line
-            hide-details>
-            </v-text-field>
+         
             <v-dialog
               v-model="dialog"
               max-width="500px">
@@ -244,7 +238,7 @@ export default {
       const index = this.UserList.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.UserList.splice(index, 0)
       this.editedItem = Object.assign({}, item)
-      let endpoint = `users/delete/${this.editedItem.username}`
+      let endpoint = `postproject/del/${this.editedItem.username}`
       let method = 'delete'
       this.callTableAction(item, endpoint, method);
     },

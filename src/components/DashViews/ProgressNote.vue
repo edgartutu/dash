@@ -60,7 +60,7 @@
         if (this.value === 100) {
           return (this.value = 0)
         }
-        this.value += 1
+        this.value = 50
       }, 1000)
     }
   }

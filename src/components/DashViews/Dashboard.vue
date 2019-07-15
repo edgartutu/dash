@@ -3,6 +3,7 @@
     fill-height
     fluid
     grid-list-xl>
+    <v-card class="transparent">
       
     <v-layout wrap>
        <v-flex
@@ -33,7 +34,10 @@
           title="Pending Projects"
           popout  
         >
-          <user/>
+        <v-flex>
+           <typo/>
+        </v-flex>
+         
         </material-card>
       </v-flex>
       <v-flex
@@ -45,11 +49,13 @@
           color="teal darken-1">
 
           <simple/>
-
         </material-card>
       </v-flex>
+
+     
       
     </v-layout>
+    </v-card>
   </v-container>
 </template>
 
@@ -59,6 +65,7 @@ import table from './UsersTable.vue'
 import simple from './SimpleTables.vue'
 import project from './ProjectTable.vue'
 import note from './ProgressNote'
+import typo from './Typography.vue'
 export default {
   name: 'Dashboard',
   components:{
@@ -66,7 +73,8 @@ export default {
     table,
     simple,
     project,
-    note
+    note,
+    typo
 
   },
   data () {

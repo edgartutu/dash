@@ -2,30 +2,82 @@
   <v-container
     fill-height
     fluid
+    grid-list-xl
   >
     <v-layout
-      justify-center
-      align-center
-    >
-      <v-flex xs12>
-        <material-card
-          color="general"
-          title="Projects"  
+       justify-center
+      wrap
+    >  
+      <v-flex  md12>
+        <material-card  
         >
         <v-card-text>
               <v-flex
-          md12
+               md12
+              >
+              <v-spacer></v-spacer>
+              <div class="text-xs-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="purple"
+          dark
+          v-on="on"
         >
-          <material-card
-            color="green"
-            title="Table"
-            
+         New Projects
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+         Add Project
+        </v-card-title>
+
+        <v-card-text>
+          <v-layout wrap>
+            <v-text-field
+              label="Title" v-model="title"/>
+                    </v-layout>
+                    <p></p>
+                     <v-layout wrap>
+                        <v-text-field 
+                          label="Coment"  v-model="comments"/>
+
+                    </v-layout>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="save"
           >
-            <v-data-table
+            Submit
+          </v-btn>
+           <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+             @click="dialog = false"
+          >
+            Exit
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+              <v-data-table
               :headers="headers"
-              :items="items.slice(0, 10)"
-              hide-actions
-            >
+              :items="items"
+              hide-actions>
               <template
                 slot="headerCell"
                 slot-scope="{ header }"
@@ -44,7 +96,7 @@
       
               </template>
             </v-data-table>
-          </material-card>
+        
         </v-flex>
       
       </v-card-text>
@@ -57,7 +109,13 @@
 <script>
 import axios from 'axios'
     export default {
-        data: () => ({
+        data () {
+          return {
+        dialog: false,
+        title: '',
+        comments: '',
+
+              
             headers: [
                 {
                     sortable: false,
@@ -69,15 +127,32 @@ import axios from 'axios'
                     text: 'Comment',
                     value: 'country'
                 }
-
             ],
-            items: []
+            items: [],
+             
+                   
+      
+    }
 
-        }),
+          },
         mounted() {
             axios.get("http://127.0.0.1:5000/adminviewprojects").then(response => {
                 this.items = response.data
             })
+        },
+        methods:{
+           
+           save(){
+             axios.post("http://127.0.0.1:5000/postproject", {
+              "title": this.title, "comments": this.comments
+          })
+
+           }
+         
+           
+          
+          
+
         }
     }
 

@@ -2,17 +2,23 @@
   <v-container
     fill-height
     fluid
-    grid-list-xl>
+    grid-list-xl
+  >
+    >
     <v-layout
       justify-center
       wrap
       
     >
-      <v-flex >
-        <materila-card >
-          <v-form >  
+      <v-flex 
+      md12>
+        <materila-card
+         color="yellow" >
+
+         <v-card>
+          
             <v-expansion-panel popout>
-              <v-expansion-panel-content v-for="proposal in proposals" :key="proposal.reg_no">
+              <v-expansion-panel-content v-for="(proposal,index) in proposals" :key="proposal.reg_no">
                 <template v-slot:header>
                <div>{{proposal.title}}</div>
             </template>
@@ -31,15 +37,15 @@
                     <v-text-field label="Supervisor" placeholder="Supervisor" v-model="supervisor"></v-text-field>
                     <v-text-field label="Email" placeholder="Emain" v-model="email"></v-text-field>
                     <v-text-field label="Comment" placeholder="Comment" v-model="comment"></v-text-field>
-                    <v-btn class="green" @click="approve">Approve</v-btn>
-                    <v-btn class="red" @click="rejected">Reject</v-btn>
+                    <v-btn class="green" @click="approve(index)">Approve</v-btn><v-spacer></v-spacer>
+                    <v-btn class="red" @click="rejected(index)">Reject</v-btn>
                 </v-card-text>
           
               </v-expansion-panel-content>
             </v-expansion-panel>
       
-    
-          </v-form>
+      </v-card>
+       
         </materila-card>
       </v-flex>
       <v-flex
@@ -70,15 +76,15 @@ import axios from 'axios'
             })
         },
         methods: {
-            approve() {
+            approve(index) {
                 axios.post("http://127.0.0.1:5000/approve", {
-                    "reg_no": 1236, "supervisor": this.supervisor, "email": this.email,
+                    "reg_no": this.proposals[index].reg_no, "supervisor": this.supervisor, "email": this.email,
                     "comment": this.comment, "status": "Approved"
                 })
             },
-            rejected() {
+            rejected(index) {
                 axios.post("http://127.0.0.1:5000/approve", {
-                    "reg_no": 1234,
+                    "reg_no": this.proposals[index].reg_no,
                     "comment": this.comment, "status": "Rejected"
                 })
             }
