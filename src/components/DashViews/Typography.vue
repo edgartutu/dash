@@ -74,6 +74,9 @@
       </v-card>
     </v-dialog>
   </div>
+            <v-container>
+  <v-layout column style="height: 40vh">       
+    <v-flex md14 style="overflow: auto">
               <v-data-table
               :headers="headers"
               :items="items"
@@ -93,9 +96,13 @@
               >
                 <td>{{ item.title }}</td>
                 <td>{{ item.comments}}</td>
+                 <td>{{ item.date_submit}}</td>
       
               </template>
             </v-data-table>
+            </v-flex>
+            </v-layout>
+            </v-container>
         
         </v-flex>
       
@@ -136,22 +143,20 @@ import axios from 'axios'
 
           },
         mounted() {
-            axios.get("http://127.0.0.1:5000/adminviewprojects").then(response => {
+             axios.get("http://127.0.0.1:5000/adminviewprojects").then(response => {
                 this.items = response.data
             })
         },
         methods:{
-           
+
+        
            save(){
              axios.post("http://127.0.0.1:5000/postproject", {
               "title": this.title, "comments": this.comments
           })
 
-           }
-         
+           },
            
-          
-          
 
         }
     }

@@ -1,4 +1,7 @@
 <template>
+  <v-container>
+  <v-layout column style="height: 30vh">       
+    <v-flex md16 style="overflow: auto">
   <v-data-table class="fb-table-elem"
       :headers="headers"
       :items="items"
@@ -56,7 +59,7 @@
                           v-model="dialog"
                           width="200"
                           >
-                            <template v-slot:activator="{ on }">
+                            <!-- <template v-slot:activator="{ on }">
                               <v-btn
                               class="green"       
                                 v-on="on"
@@ -64,7 +67,7 @@
                               >
                                 Approve
                               </v-btn>
-                            </template>
+                            </template> -->
                             <v-card>
                               <v-card-text>
                                 <h4 style="color:green">Successfull</h4> 
@@ -80,7 +83,7 @@
                           v-model="dialog"
                           width="200"
                           >
-                            <template v-slot:activator="{ on }">
+                           <!-- <template v-slot:activator="{ on }">
                               <v-btn
                               class="red"       
                                 v-on="on"
@@ -88,7 +91,7 @@
                               >
                                Reject
                               </v-btn>
-                            </template>
+                            </template> -->
                             <v-card>
                               <v-card-text>
                                 <h4 style="color:red"> Rejected!</h4>
@@ -120,10 +123,14 @@
           </v-card>
         </template>
       </v-data-table>
+      </v-flex>
+      </v-layout>
+      </v-container>
 </template>
 <script>
 import axios from 'axios'
 import user from './UserProfile.vue'
+
   export default {
       components:{
           user
@@ -165,32 +172,37 @@ import user from './UserProfile.vue'
     },
   
   mounted() {
+      this.prop();
+            this.propsal();
+           
+            // this.intervalFetchData()
+          
+            
+        },
+  
+      
+
+  
+       methods: {
+         prop(){
             axios.get("http://127.0.0.1:5000/proposals").then(response => {
                 this.items = response.data
             })
-        },
-  
- 
 
-  created() {
-            axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
-                this.proposals = response.data
-            })
-        },
-        methods: {
-            approve() {
-                axios.post("http://127.0.0.1:5000/approve", {
-                    "reg_no": 1236, "supervisor": this.supervisor, "email": this.email,
-                    "comment": this.comment, "status": "Approved"
-                })
-            },
-            rejected() {
-                axios.post("http://127.0.0.1:5000/approve", {
-                    "reg_no": 1234,
-                    "comment": this.comment, "status": "Rejected"
-                })
-            }
-        }
+         },
+          propsal(){
+               axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
+                this.proposals = response.data })
+          },
+            
+        //     intervalFetchData: function () {
+        //     setInterval(() => { 
+        //         this.prop();
+        //         this.propsal();
+                
+        //         }, 3000);    
+        // },
+         }
      
   }
 </script>

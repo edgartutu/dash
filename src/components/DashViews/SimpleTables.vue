@@ -19,6 +19,8 @@
             color="red"
             dark
             class="mb-2" >Edit</v-btn>
+            <v-layout column style="height: 50vh">       
+            <v-flex md12 style="overflow: auto">   
           <v-data-table
             :headers="headers"
             :items="items"
@@ -45,6 +47,8 @@
                  <td>{{ item.status }}</td>
             </template>
           </v-data-table>
+          </v-flex>
+          </v-layout>
         </material-card>
       </v-flex>
 
@@ -94,9 +98,15 @@ export default {
 
         }),
         mounted() {
-            axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
+          
+            axios.get("http://127.0.0.1:5000/approved").then(response => {
                 this.items = response.data
             })
-        }
+
+             
+            
+
+          
+            },
 }
 </script>

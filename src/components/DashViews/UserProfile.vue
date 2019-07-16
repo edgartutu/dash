@@ -1,10 +1,11 @@
 <template>
+
   <v-container
     fill-height
     fluid
     grid-list-xl
   >
-    >
+    
     <v-layout
       justify-center
       wrap
@@ -13,9 +14,10 @@
       <v-flex 
       md12>
         <materila-card
-         color="yellow" >
+        
+          >
 
-         <v-card>
+         <v-card class="indigo lighten-5">
           
             <v-expansion-panel popout>
               <v-expansion-panel-content v-for="(proposal,index) in proposals" :key="proposal.reg_no">
@@ -40,6 +42,8 @@
                     <v-btn class="green" @click="approve(index)">Approve</v-btn><v-spacer></v-spacer>
                     <v-btn class="red" @click="rejected(index)">Reject</v-btn>
                 </v-card-text>
+                <v-spacer></v-spacer>
+                
           
               </v-expansion-panel-content>
             </v-expansion-panel>
@@ -48,14 +52,9 @@
        
         </materila-card>
       </v-flex>
-      <v-flex
-        xs12
-        md4
-      >
-        
-      </v-flex>
     </v-layout>
   </v-container>
+
 </template>
 
 <script>
@@ -71,11 +70,17 @@ import axios from 'axios'
             }
         },
         mounted() {
-            axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
-                this.proposals = response.data
-            })
+           this.propsal();
+            this. approve();
+            this.rejected();
+            // this.intervalFetchData();
+           
         },
         methods: {
+          propsal(){
+               axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
+                this.proposals = response.data })
+          },
             approve(index) {
                 axios.post("http://127.0.0.1:5000/approve", {
                     "reg_no": this.proposals[index].reg_no, "supervisor": this.supervisor, "email": this.email,
@@ -87,7 +92,16 @@ import axios from 'axios'
                     "reg_no": this.proposals[index].reg_no,
                     "comment": this.comment, "status": "Rejected"
                 })
-            }
+            },
+        //     intervalFetchData: function () {
+        //     setInterval(() => {    
+        //         this.propsal();
+        //         this. approve();
+        //         this.rejected();
+
+        //         }, 1000);    
+        // }
+          
         }
      
     

@@ -1,9 +1,10 @@
 <template>
+<v-card class="white">
   <v-container
-    fill-height
-    fluid
-    grid-list-xl>
-    <v-card class="transparent">
+  fluid
+  grid-list-md
+   >
+    
       
     <v-layout wrap>
        <v-flex
@@ -20,18 +21,20 @@
 
         </material-card>
       </v-flex>
-      <v-flex 
+      <v-flex align-self: center
       >
+       
            <note/>
       </v-flex>
       <v-spacer></v-spacer>
+      
      <v-flex
-       
+       md4
         lg6
       >
         <material-card  class="rounded-card"
           color="deep-orange darken-1"
-          title="Pending Projects"
+          title="New Projects"
           popout  
         >
         <v-flex>
@@ -41,7 +44,7 @@
         </material-card>
       </v-flex>
       <v-flex
-        
+        md4
         lg6
       >
         <material-card
@@ -55,8 +58,9 @@
      
       
     </v-layout>
-    </v-card>
+    
   </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -64,7 +68,7 @@ import user from './UserProfile.vue'
 import table from './UsersTable.vue'
 import simple from './SimpleTables.vue'
 import project from './ProjectTable.vue'
-import note from './ProgressNote'
+import note from './ProgressNote.vue'
 import typo from './Typography.vue'
 export default {
   name: 'Dashboard',
@@ -229,7 +233,7 @@ export default {
 </script>
 <style >
 .rounded-card{
-    border-radius:50px;
+    border-radius:100px;
 }
   
 </style>

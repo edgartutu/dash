@@ -72,11 +72,18 @@ export default {
     
         },
         mounted() {
-            axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
-                this.proposals = response.data
-            })
+             this.prop();
+            this. approve();
+            this.rejected();
+            this.intervalFetchData()
         },
         methods: {
+          prop(){
+              axios.get("http://127.0.0.1:5000/pendingproposal").then(response => {
+                this.proposals = response.data
+            })
+
+          },
             approve() {
                 axios.post("http://127.0.0.1:5000/approve", {
                     "reg_no": 1234, "supervisor": this.supervisor, "email": this.email,
@@ -89,7 +96,15 @@ export default {
                     "reg_no": 1234,
                     "comment": this.comment, "status": this.status2
                 })
-            }
+            },
+             intervalFetchData: function () {
+            setInterval(() => { 
+                this.prop();
+                this. approve();
+                this.rejected();
+
+                }, 3000);    
+        }
         }
 }
 </script>

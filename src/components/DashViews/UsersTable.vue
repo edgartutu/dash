@@ -43,8 +43,6 @@
                     </v-layout>
                     <p></p>
                      <v-layout wrap>
-                    
-                       
                         <v-text-field
                           v-model="editedItem.email"
                           label="Coment" />
