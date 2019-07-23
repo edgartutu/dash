@@ -9,9 +9,9 @@ export default {
       
       axios.post('/login-admin', { username: userData.username, password: userData.password })
         .then(response => {
-          const token = response.data.access_token
+          const token = response.data.token
           const user = response.data.username
-          console.log(response)
+          //console.log(token)
           // storing jwt in localStorage. https cookie is safer place to store
           localStorage.setItem('token', token)
           localStorage.setItem('user', user)

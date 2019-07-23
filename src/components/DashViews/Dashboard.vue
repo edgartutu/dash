@@ -24,7 +24,7 @@
       <v-flex align-self: center
       >
        
-           <note/>	
+           <note/>
       </v-flex>
       <v-spacer></v-spacer>
       
@@ -70,7 +70,6 @@ import simple from './SimpleTables.vue'
 import project from './ProjectTable.vue'
 import note from './ProgressNote.vue'
 import typo from './Typography.vue'
-import dates from './DatePicker.vue'
 export default {
   name: 'Dashboard',
   components:{
@@ -79,8 +78,7 @@ export default {
     simple,
     project,
     note,
-    typo,
-    dates
+    typo
 
   },
   data () {

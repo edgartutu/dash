@@ -14,7 +14,7 @@
           <td class="datatable-cell-wrapper"><div>{{ props.item.title }}</div></td>
           <td class="datatable-cell-wrapper"><div>{{ props.item.status}}</div></td>
           <td class="datatable-cell-wrapper"><div>{{ props.item.proposal_uploadfile }}</div></td>
-          <td class="datatable-cell-wrapper">{{ props.item.student }}</td>
+          <td class="datatable-cell-wrapper">{{ props.item.student_pair }}</td>
           <td class="datatable-cell-wrapper">{{ props.item.supervisor }}</td>
           <td class="datatable-cell-wrapper">{{ props.item.email }}</td>
           <v-dialog
@@ -37,19 +37,17 @@
                       >
                       Concept Details
                     </v-card-title>
-                 
                             <v-card-text class="px-16">
-                            
                                 <h4 class="font-weight-bold">Students</h4>
                                 <p>{{props.item.reg_no}}</p>
                                 <h4 class="font-weight-bold">Title</h4>
                                 <p>{{props.item.title}}</p>
                                 <h4 class="font-weight-bold">Problem statment</h4>
-                                <p>{{props.item.problem_statement}}</p>
+                                <p>{{props.item.problem_statment}}</p>
                                 <h4 class="font-weight-bold">Methodology</h4>
                                 <p>{{props.item.abstract}}</p>
                                 <h4 class="font-weight-bold">File</h4>
-                                <p>{{props.item.proposal_uploadfile}}</p>
+                                <p>{{props.item.file}}</p>
                                   <h4 class="font-weight-bold">Status</h4>
                                 <p>{{props.item.status}}</p>
                                 
@@ -157,12 +155,10 @@ import user from './UserProfile.vue'
        
          { text: 'Reg_no', value: 'reg_no' },
         { text: 'Title', value: 'title' },
-         { text: 'Status', value: 'status' },
-          { text: 'file', value: 'proposal_uploadfile' },
-        { text: 'Student', value: 'student' }, 
+        { text: 'Student', value: 'student_pair' }, 
         { text: 'Supervisor', value: 'supervisor' }, 
-       
-      
+        { text: 'file', value: 'proposal_uploadfile' },
+       { text: 'Status', value: 'status' },
     
       
       ],

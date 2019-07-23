@@ -34,8 +34,12 @@
                     <h4 class="font-weight-bold">Abstract</h4>
                     <div>{{proposal.abstract}}</div>
                     <h4 class="font-weight-bold">File</h4>
-                    <div>{{proposal.file}}</div>
+                    <div>{{proposal.proposal_uploadfile}}</div>
+                    <p></p>
+                    <v-btn class="green" @click="pendingfiles(index)">Download</v-btn>
+                    <p></p>
                     <div>{{proposal.status}}</div>
+                    <p></p>
                     <v-text-field label="Supervisor" placeholder="Supervisor" v-model="supervisor"></v-text-field>
                     <v-text-field label="Email" placeholder="Emain" v-model="email"></v-text-field>
                     <v-text-field label="Comment" placeholder="Comment" v-model="comment"></v-text-field>
@@ -66,6 +70,8 @@ import axios from 'axios'
                 supervisor: "",
                 email: "",
                 comment: "",
+                pending: null,
+                link: null,
 
             }
         },
@@ -92,6 +98,14 @@ import axios from 'axios'
                     "reg_no": this.proposals[index].reg_no,
                     "comment": this.comment, "status": "Rejected"
                 })
+            },
+            pendingfiles(index) {
+                axios.post("http://127.0.0.1:5000/pendingfiles", {
+                    "reg_no": this.proposals[index].reg_no
+                }).then(response => {
+                    console.log(response.data)
+                })
+
             },
         //     intervalFetchData: function () {
         //     setInterval(() => {    

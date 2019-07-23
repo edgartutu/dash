@@ -17,7 +17,7 @@
         
         >  <v-data-table
             :headers="headers"
-            :items="itemz.slice(0, 7)"
+            :items="items.slice(0, 7)"
             hide-actions
           >
             <template
@@ -35,10 +35,10 @@
             >
              <td>{{ item.reg_no }}</td>
               <td>{{ item.student1 }}</td>
-              <td>{{ item.contact1 }}</td>
-               <td>{{ item.reg_no1 }}</td>
+              <td>{{ item.email }}</td>
+               <td>{{ item.reg_no2 }}</td>
                 <td>{{ item.student2 }}</td>
-                 <td>{{ item.contact2 }}</td>
+                 <td>{{ item.email2 }}</td>
               
             </template>
           </v-data-table>
@@ -57,7 +57,7 @@
         >
           <v-data-table
             :headers="header"
-            :items="items.slice(0, 7)"
+            :items="itemz.slice(0, 7)"
             hide-actions
           >
             <template
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     headers: [
@@ -124,24 +125,9 @@ export default {
       },
       
     ],
-    items: [
-      {
-        name: 'Dakota Rice',
-        email: 'Niger',
-        contact: 'Oud-Tunrhout',
-        
-      }
-    ],
-     itemz: [
-      {
-        reg_no: 'Dakota Rice',
-        student1: 'Niger',
-        contact1: 'Oud-Tunrhout',
-        reg_no1: '$35,738',
-        student2: 'Oud-Tunrhout',
-        contact2: '$35,738'
-      }
-    ],
+        items: [],
+
+     itemz: [],
 
     header: [
       {
@@ -161,6 +147,13 @@ export default {
       }
       
     ],
-  })
+        }),
+        mounted() {
+            axios.get("http://127.0.0.1:5000/allstudents").then(response => {
+                this.items = response.data })
+
+            axios.get("http://127.0.0.1:5000/allguest").then(response => {
+                this.itemz = response.data })
+        }
 }
 </script>

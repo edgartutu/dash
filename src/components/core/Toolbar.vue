@@ -1,5 +1,5 @@
 <template>
-	<v-toolbar id="core-toolbar" flat prominent>
+	<v-toolbar id="core-toolbar" dark style="background: #424242;" flat prominent>
 		<div class="v-toolbar-title">
 			<v-toolbar-title class="font-weight-light text-general">
 				<v-btn v-if="responsive" class="default v-btn--simple" icon @click.stop="onClickBtn">
@@ -8,12 +8,10 @@
 				
 			</v-toolbar-title>
 		</div>
-			
+
 		<v-spacer/>
 		<v-toolbar-items>
-			
 			<v-flex align-center layout py-2>
-				
 				<v-text-field
 					v-if="responsiveInput"
 					class="mr-4 mt-2 purple-input"
@@ -21,7 +19,6 @@
 					hide-details
 					color="purple"
 				/>
-					
 				<router-link v-ripple class="toolbar-items" to="/">
 					<v-icon color>mdi-home</v-icon>
 				</router-link>
@@ -50,20 +47,15 @@
 				</router-link>
 
 				<v-icon class="toolbar-items" color @click="logout">mdi-power</v-icon>
-			
 			</v-flex>
 		</v-toolbar-items>
 	</v-toolbar>
 </template>
+
 <script>
 	import { mapMutations, mapGetters } from "vuex";
-	import dates from '../DashViews/DatePicker.vue'
-
 
 	export default {
-		components:{
-				dates
-		},
 		data: () => ({
 			notifications: [
 				"Mike, Thanos is coming",

@@ -14,6 +14,7 @@
     "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
     "vue-chartist": "^2.1.2",
+    "vue-json-excel": "^0.2.98",
     "vue-meta": "^1.5.2",
     "vuetify": "^1.2.5"
   },
@@ -23,7 +24,7 @@
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "@vue/eslint-config-standard": "^3.0.1",
-    "axios": "^0.17.1",
+    "axios": "^0.19.0",
     "material-design-icons-iconfont": "^3.0.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

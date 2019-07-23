@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
       next()
       return
     }
-    next('/dashboard')
+    next('/')
   } else {
     next()
   }

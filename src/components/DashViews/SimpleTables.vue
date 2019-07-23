@@ -16,9 +16,10 @@
         <material-card 
         >
           <v-btn
+            @click="exportdb()"
             color="red"
             dark
-            class="mb-2" >Edit</v-btn>
+            class="mb-2" >Export To Excel</v-btn>
             <v-layout column style="height: 50vh">       
             <v-flex md12 style="overflow: auto">   
           <v-data-table
@@ -35,16 +36,16 @@
                 v-text="header.text"
               />
             </template>
-            <template
-              slot="items"
-              slot-scope="{ item }"
-            >
-             <td>{{ item.reg_no }}</td>
-              <td>{{ item.title }}</td>
-              <td>{{ item.problem_statement }}</td>
-               <td>{{ item.abstract }}</td>
+            <template slot="items"
+                      slot-scope="{ item,index }">
+                <td>{{ item.id }}</td>
+                <td>{{ item.reg_no }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.problem_statement }}</td>
+                <td>{{ item.methodology }}</td>
                 <td>{{ item.proposal_uploadfile }}</td>
-                 <td>{{ item.status }}</td>
+                <td>{{ item.status }}</td>
+                <v-btn class="flat green" @click="download(index)">Download</v-btn>
             </template>
           </v-data-table>
           </v-flex>
@@ -61,7 +62,12 @@
 import axios from 'axios'
 export default {
   data: () => ({
-    headers: [
+      headers: [
+      {
+        sortable: true,
+        text: 'Project Id',
+        value: 'id'
+      },
       {
         sortable: true,
         text: 'Reg No',
@@ -79,8 +85,8 @@ export default {
       },
       {
         sortable: false,
-        text: 'Abstract',
-        value: 'abstract',
+        text: 'Methodology',
+        value: 'methodology',
       },
       {
         sortable: false,
@@ -94,7 +100,8 @@ export default {
       },
 
         ],
-        items: []
+        items: [],
+        reg_no: '',
 
         }),
         mounted() {
@@ -102,11 +109,20 @@ export default {
             axios.get("http://127.0.0.1:5000/approved").then(response => {
                 this.items = response.data
             })
-
-             
-            
-
           
+        },
+        methods: {
+            exportdb() {
+                axios.post("http://127.0.0.1:5000/excelexport").then(response => {
+                    console.log(response)
+                })
             },
+            download(index) {
+                this.reg_no = this.items[index].reg_no
+                axios.post("http://127.0.0.1:5000/pendingfiles", {'reg_no':this.reg_no}).then(response => {
+                    console.log(this.reg_no)
+                })
+            }
+        }
 }
 </script>

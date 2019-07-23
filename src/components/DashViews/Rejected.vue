@@ -42,7 +42,7 @@
              <td>{{ item.reg_no }}</td>
               <td>{{ item.title }}</td>
               <td>{{ item.problem_statment }}</td>
-               <td>{{ item.abstract }}</td>
+               <td>{{ item.methodology }}</td>
                 <td>{{ item.file }}</td>
                  <td>{{ item.status }}</td>
             </template>
@@ -77,8 +77,8 @@ export default {
       },
       {
         sortable: false,
-        text: 'Abstract',
-        value: 'abstract',
+        text: 'Methodology',
+        value: 'methodology',
       },
       {
         sortable: false,
@@ -90,6 +90,7 @@ export default {
         text: 'Status',
         value: 'status',
       },
+
 
     ],
     items: []

@@ -19,7 +19,7 @@
             hide-details>
             </v-text-field><br>
              <v-spacer></v-spacer>
-            <v-card v-for="item in items" :key="item.date">
+            <v-card v-for="(item,index) in items" :key="item.datestamp">
                  <v-card-slide class="px-12">
                      <h4 class="font-weight-bold">Student</h4>
                     <div>
@@ -29,9 +29,12 @@
                     <div>
                         {{item.files}}
                     </div>
+                    <div>
+                        <v-btn class="green" @click="pendingfiles(index)">Download</v-btn>
+                    </div>
                      <h4 class="font-weight-bold">Submit date</h4>
                       <div>
-                        {{item.date}}
+                        {{item.datestamp}}
                     </div>
                     <v-divider class="my-3"></v-divider>
                 </v-card-slide>
@@ -45,25 +48,27 @@
 </template>
 
 <script>
-export default {
-    data(){
-        return{
-
-            items:[
-            {
-                reg_no:'1234',
-                files:'xxxxx',
-                date:'12/12/12'
-            },
-            {
-                reg_no:'9876',
-                files:'xxxxx',
-                date:'12/12/12'
+import axios from 'axios'
+    export default {
+        data() {
+            return {
+                items: [],
+                reg_no: "",
             }
-        ]
+        },
+        mounted() {
+            axios.get("http://127.0.0.1:5000/allprogressreports").then(response => {
+                this.items = response.data })
+        },
+        methods: {
+            pendingfiles(index) {
+                axios.post("http://127.0.0.1:5000/progressfiles", {
+                    "reg_no": this.items[index].reg_no
+                }).then(response => {
+                    console.log(response.data)
+                })
 
+            }
         }
-        
-    }
 }
 </script>
